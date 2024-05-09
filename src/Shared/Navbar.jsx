@@ -1,26 +1,23 @@
-import logo from '../../public/png-clipart-job-description-employment-computer-icons-career-others-miscellaneous-purple-thumbnail_prev_ui.png'
-import { NavLink} from "react-router-dom";
-import { Tooltip } from 'react-tooltip'
-import 'react-tooltip/dist/react-tooltip.css'
+import logo from "../../public/png-clipart-job-description-employment-computer-icons-career-others-miscellaneous-purple-thumbnail_prev_ui.png";
+import { NavLink } from "react-router-dom";
+import { Tooltip } from "react-tooltip";
+import "react-tooltip/dist/react-tooltip.css";
 
 const Navbar = () => {
- const navLinks = (
+  const navLinks = (
     <>
-      <li className="font-bold">
-        <NavLink to = '/'>Home</NavLink>
+      <li className=" text-slate-700">
+        <NavLink to="/">Home</NavLink>
       </li>
-    
-       <div className="flex lg:flex-row gap-1 flex-col">
-         <li className="font-bold">
-        <NavLink to = '/alljobs'>All Jobs</NavLink>
-      </li>
-       <li className="font-bold">
-        <NavLink to = '/blogs'>Blogs</NavLink>
-      </li>
+
+      <div className="flex lg:flex-row gap-1 flex-col">
+        <li className="text-slate-700">
+          <NavLink to="/alljobs">All Jobs</NavLink>
+        </li>
+        <li className="text-slate-700">
+          <NavLink to="/blogs">Blogs</NavLink>
+        </li>
       </div>
-      
-    
-   
     </>
   );
 
@@ -53,24 +50,24 @@ const Navbar = () => {
             </ul>
           </div>
 
-          <div className='flex items-center'>
-            
-             <img src={logo} className='h-16 w-full'></img>
-            
+          <div className="flex items-center">
+            <img src={logo} className="h-16 w-full"></img>
+
             <div>
-            <h1 className="font-extrabold">
-            <span className="text-purple-600 text-xl">DevJobs</span>
-            <span className="text-purple-700 text-md">.io</span>
-          </h1>
+              <h1 className="font-extrabold">
+                <span className="text-purple-600 text-xl">DevJobs</span>
+                <span className="text-purple-700 text-md">.io</span>
+              </h1>
             </div>
           </div>
-        </div>
-        <div className="navbar-center hidden lg:flex">
+          <div className="navbar-start lg:ml-10 hidden lg:flex">
           <ul className="menu menu-horizontal px-1 z-10">{navLinks}</ul>
         </div>
+        </div>
         
+
         <div className="navbar-end">
-        {/* (
+          {/* (
             <div className="btn btn-ghost btn-circle avatar mr-2" data-tooltip-id="my-tooltip" data-tooltip-content={user.displayName || 'Update User Name'}>
               <div className="w-12 rounded-full object-cover">
                 {user.photoURL ? <img alt="Profile" src={user.photoURL} /> : <img alt="Profile" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />}
@@ -80,9 +77,8 @@ const Navbar = () => {
           <Tooltip id="my-tooltip" effect="solid" place="bottom" />
           <p className="relative rounded px-5 py-2.5 overflow-hidden group bg-purple-800  hover:bg-gradient-to-r hover:from-purple-500 hover:to-purple-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-purple-400 transition-all ease-out duration-300">
             <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
-             
-              <button>Login</button>
-            
+
+            <button>Login</button>
           </p>
         </div>
       </div>
