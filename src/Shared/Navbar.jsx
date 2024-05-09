@@ -1,9 +1,18 @@
+import { useContext, useState } from "react";
 import logo from "../../public/png-clipart-job-description-employment-computer-icons-career-others-miscellaneous-purple-thumbnail_prev_ui.png";
 import { NavLink } from "react-router-dom";
-import { Tooltip } from "react-tooltip";
-import "react-tooltip/dist/react-tooltip.css";
+import LoginModal from "../Components/LoginModal";
+import { Context } from "../Providers/AuthProviders";
+
+
 
 const Navbar = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const {user,logOut} = useContext(Context)
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
   const navLinks = (
     <>
       <li className=" text-slate-700">
@@ -67,20 +76,17 @@ const Navbar = () => {
         
 
         <div className="navbar-end">
-          {/* (
-            <div className="btn btn-ghost btn-circle avatar mr-2" data-tooltip-id="my-tooltip" data-tooltip-content={user.displayName || 'Update User Name'}>
-              <div className="w-12 rounded-full object-cover">
-                {user.photoURL ? <img alt="Profile" src={user.photoURL} /> : <img alt="Profile" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />}
-              </div>
-            </div>
-          ) */}
-          <Tooltip id="my-tooltip" effect="solid" place="bottom" />
+         
+          
           <p className="relative rounded px-5 py-2.5 overflow-hidden group bg-purple-800  hover:bg-gradient-to-r hover:from-purple-500 hover:to-purple-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-purple-400 transition-all ease-out duration-300">
             <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
 
-            <button>Login</button>
+           {
+            user ?  <button onClick={logOut}>Logout</button> :  <button onClick={toggleModal}>Login</button>
+           }
           </p>
         </div>
+        {isModalOpen && <LoginModal closeModal={toggleModal} />}
       </div>
     </div>
   );
