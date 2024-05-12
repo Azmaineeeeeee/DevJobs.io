@@ -25,7 +25,7 @@ const PrivateNavbar = () => {
       );
     
     return (
-      <div className="navbar bg-purple-100">
+      <div className="navbar bg-blue-50">
       <div className="flex mx-auto">{navLinks}</div>
       <div className="flex-none gap-2">
         <div className="dropdown dropdown-end flex items-center lg:gap-4">

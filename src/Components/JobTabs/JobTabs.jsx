@@ -35,7 +35,7 @@ const JobTabs = () => {
        </div>
 
         <TabPanel>
-          <h2 className=' grid lg:grid-cols-3 gap-8'>
+          <h2 className=' grid lg:grid-cols-3 gap-8 lg:mx-28'>
           {
   jobs
     .filter(job => job.job_type === 'Onsite')
@@ -47,7 +47,7 @@ const JobTabs = () => {
           </h2>
         </TabPanel>
         <TabPanel>
-          <h2 className=' grid lg:grid-cols-3 gap-8'>
+          <h2 className=' grid lg:grid-cols-3 gap-8 lg:mx-28'>
           {
   jobs
     .filter(job => job.job_type === 'Remote')
@@ -59,7 +59,7 @@ const JobTabs = () => {
           </h2>
         </TabPanel>
         <TabPanel>
-          <h2 className=' grid lg:grid-cols-3 gap-8'>
+          <h2 className=' grid lg:grid-cols-3 gap-8 lg:mx-28'>
           {
   jobs
     .filter(job => job.job_type === 'Hybrid')
@@ -71,7 +71,7 @@ const JobTabs = () => {
           </h2>
         </TabPanel>
         <TabPanel>
-          <h2 className=' grid lg:grid-cols-3 gap-8'>
+          <h2 className=' grid lg:grid-cols-3 gap-8 lg:mx-28'>
           {
   jobs
     .filter(job => job.job_type === 'Part-time')
