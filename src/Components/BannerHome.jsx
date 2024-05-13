@@ -1,5 +1,6 @@
+import { Link } from "react-router-dom";
 import "../../src/Components/BannerHome.css";
-import CountUpCards from "./CountUpCard";
+
 const BannerHome = () => {
   return (
     <div className="relative overflow-hidden">
@@ -18,7 +19,7 @@ const BannerHome = () => {
             platform offers a diverse range of job openings to suit every
             ambition.
           </p>
-          <CountUpCards></CountUpCards>
+         
         </div>
         <div className="lg:w-1/3 w-full">
           <section className="p-6">
@@ -103,9 +104,11 @@ const BannerHome = () => {
                     />
                   </div>
                 </div>
-                <button className="w-full py-2 px-4 bg-purple-600 text-white font-semibold rounded-md hover:bg-purple-700 transition duration-300">
+               <Link to = '/alljobs'>
+               <button className="w-full py-2 px-4 bg-purple-600 text-white font-semibold rounded-md hover:bg-purple-700 transition duration-300">
                   Explore All Job Listings
                 </button>
+               </Link>
               </fieldset>
             </form>
           </section>

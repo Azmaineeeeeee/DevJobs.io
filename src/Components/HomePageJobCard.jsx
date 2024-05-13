@@ -1,4 +1,4 @@
-import image from "../../public/pexels-danielabsi-952670.jpg";
+
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
 
 const HomePageJobCard = ({ job }) => {
@@ -8,7 +8,7 @@ const HomePageJobCard = ({ job }) => {
     posting_date,
     deadline,
     salary_range,
-    job_type,
+    job_type, image
   } = job;
 
   return (
@@ -36,7 +36,9 @@ const HomePageJobCard = ({ job }) => {
           <h1 className="text-sm font-semibold text-gray-600 mr-2">
             Deadline:
           </h1>
-          <h1 className="text-base font-medium text-gray-900">{deadline}</h1>
+          <h1 className="text-base font-medium text-gray-900">
+        {deadline.split('T')[0]}
+      </h1>
         </div>
         <div className="flex items-center mb-4">
           <h1 className="text-sm font-semibold text-gray-600 mr-2">
