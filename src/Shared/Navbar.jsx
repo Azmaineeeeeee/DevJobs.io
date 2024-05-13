@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import logo from "../../public/png-clipart-job-description-employment-computer-icons-career-others-miscellaneous-purple-thumbnail_prev_ui.png";
 import { NavLink } from "react-router-dom";
 import LoginModal from "../Components/LoginModal";
@@ -9,22 +9,86 @@ import { Context } from "../Providers/AuthProviders";
 const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const {user,logOut} = useContext(Context)
+  const [isOpen, setIsOpen] = useState(false);
+  const [theme, setTheme] =  useState(localStorage.getItem("theme") || "light");
+
+  const toggleNavbar = () => {
+    setIsOpen(!isOpen);
+    
+  };
+ 
+
+  useEffect(() => {
+    localStorage.setItem("theme", theme);
+    const localTheme = localStorage.getItem("theme");
+    document.querySelector("html").setAttribute("data-theme", localTheme);
+  }, [theme]);
+
+  
+
+  const themeChange = (e) => {
+    const newTheme = e.target.checked ? "business" : "light";
+    setTheme(newTheme);
+    
+  };
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
   };
   const navLinks = (
     <>
-      <li className=" text-slate-700">
-        <NavLink to="/">Home</NavLink>
-      </li>
+      
 
       <div className="flex lg:flex-row gap-1 flex-col">
-        <li className="text-slate-700">
+      <li className="font-medium">
+        <NavLink to="/">Home</NavLink>
+      </li>
+        <li className="font-medium">
           <NavLink to="/alljobs">All Jobs</NavLink>
         </li>
-        <li className="text-slate-700">
+        <li className="font-medium">
           <NavLink to="/blogs">Blogs</NavLink>
+        </li>
+        <li>
+        <div>
+          <h1 className="font-medium">Change Mode</h1>
+            <label className="cursor-pointer grid place-items-center">
+              <input
+                onChange={themeChange}
+                type="checkbox"
+               className="toggle theme-controller bg-base-content row-start-1 col-start-1 col-span-2"
+              />
+              <svg
+                className="col-start-1 row-start-1 stroke-base-100 fill-base-100"
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="12" cy="12" r="5" />
+                <path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4" />
+              </svg>
+              <svg
+                className="col-start-2 row-start-1 stroke-base-100 fill-base-100"
+                xmlns="http://www.w3.org/2000/svg"
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+              </svg>
+            </label>
+          </div>
         </li>
       </div>
     </>
@@ -76,6 +140,8 @@ const Navbar = () => {
         
 
         <div className="navbar-end">
+
+       
          
           
           <p className="relative rounded px-5 py-2.5 overflow-hidden group bg-purple-800  hover:bg-gradient-to-r hover:from-purple-500 hover:to-purple-400 text-white hover:ring-2 hover:ring-offset-2 hover:ring-purple-400 transition-all ease-out duration-300">

@@ -6,26 +6,24 @@ import { Tooltip } from "react-tooltip";
 import "react-tooltip/dist/react-tooltip.css";
 
 const PrivateNavbar = () => {
-  const {user} = useContext(Context)
-    const navLinks = (
-        <div className="flex lg:gap-6 gap-4 text-sm lg:text-md">
-          <ul className="font-bold text-purple-700">
-            <NavLink to="/appliedjobs">Jobs Applied</NavLink>
-          </ul>
-    
-         
-            <ul className="font-bold text-purple-700">
-              <NavLink to="/myjobs">Job Listing</NavLink>
-            </ul>
-            <ul className="font-bold text-purple-700">
-              <NavLink to="/addjobs">Add Jobs</NavLink>
-            </ul>
-          
-        </div>
-      );
-    
-    return (
-      <div className="navbar bg-blue-50">
+  const { user } = useContext(Context);
+  const navLinks = (
+    <div className="flex lg:gap-6 gap-4 text-sm lg:text-md">
+      <ul className="font-medium">
+        <NavLink to="/appliedjobs">Jobs Applied</NavLink>
+      </ul>
+
+      <ul className="font-medium">
+        <NavLink to="/myjobs">Job Listing</NavLink>
+      </ul>
+      <ul className="font-medium">
+        <NavLink to="/addjobs">Add Jobs</NavLink>
+      </ul>
+    </div>
+  );
+
+  return (
+    <div className="navbar shadow-sm">
       <div className="flex mx-auto">{navLinks}</div>
       <div className="flex-none gap-2">
         <div className="dropdown dropdown-end flex items-center lg:gap-4">
@@ -40,7 +38,6 @@ const PrivateNavbar = () => {
             data-tooltip-content={user?.displayName || "Update User Name"}
           >
             <div className="w-10 rounded-full">
-            
               {user ? (
                 <img src={user.photoURL} alt="User Avatar" />
               ) : (
@@ -50,13 +47,13 @@ const PrivateNavbar = () => {
                 />
               )}
             </div>
-            
+
             <Tooltip id="my-tooltip" effect="solid" place="bottom" />
           </div>
         </div>
       </div>
     </div>
-    );
+  );
 };
 
 export default PrivateNavbar;
