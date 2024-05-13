@@ -3,6 +3,7 @@ import Navbar from "../Shared/Navbar";
 import PrivateNavbar from "../Components/PrivateNavbar";
 import { useContext } from "react";
 import { Context } from "../Providers/AuthProviders";
+import Footer from "../Components/Footer";
 
 
 const MainLayout = () => {
@@ -14,6 +15,7 @@ const MainLayout = () => {
                 user && <PrivateNavbar></PrivateNavbar>
             }
             <Outlet></Outlet>
+            <Footer></Footer>
         </div>
     );
 };

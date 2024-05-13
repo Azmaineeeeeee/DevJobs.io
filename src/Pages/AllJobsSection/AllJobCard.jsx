@@ -114,7 +114,7 @@ const AllJobCard = () => {
                   {job.job_type}
                 </td>
                 <td>
-                  <Link>
+                <Link to={`/singlejob/${job._id}`}>
                     <button className="btn btn-outline btn-success py-0">
                       View Details
                     </button>

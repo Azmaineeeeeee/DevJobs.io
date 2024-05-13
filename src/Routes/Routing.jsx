@@ -10,11 +10,14 @@ import AddJobs from "../Pages/AddJobs";
 import PrivateRoute from "./PrivateRoute";
 import MyList from "../Pages/MyList";
 import UpdateJob from "../Pages/UpdateJob";
+import SingleJob from "../Pages/SingleJob";
+import ErrorPage from "../Pages/ErrorPage";
 
 
   const router = createBrowserRouter([
     {
       path: "/",
+      errorElement: <ErrorPage></ErrorPage>,
       element: <MainLayout></MainLayout>,
       children: [
         {
@@ -47,6 +50,13 @@ import UpdateJob from "../Pages/UpdateJob";
           <UpdateJob></UpdateJob>
         </PrivateRoute>,
          loader: ({params}) => fetch(`http://localhost:5001/allJobs/${params.id}`)
+      },
+      {
+        path: "singlejob/:id",
+        element: <PrivateRoute>
+          <SingleJob></SingleJob>
+        </PrivateRoute>,
+        loader: ({params}) => fetch(`http://localhost:5001/allJobs/${params.id}`)
       },
       
     ]

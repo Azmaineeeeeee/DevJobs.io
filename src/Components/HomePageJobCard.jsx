@@ -1,5 +1,6 @@
 
 import { MdKeyboardDoubleArrowRight } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const HomePageJobCard = ({ job }) => {
   const {
@@ -8,7 +9,7 @@ const HomePageJobCard = ({ job }) => {
     posting_date,
     deadline,
     salary_range,
-    job_type, image
+    job_type, image, _id
   } = job;
 
   return (
@@ -52,10 +53,14 @@ const HomePageJobCard = ({ job }) => {
           <h1 className="text-purple-950 font-medium rounded-xl bg-purple-300 px-4 py-1">
             {job_type}
           </h1>
+        
           <div className="flex items-center gap-2 text-purple-600 font-semibold cursor-pointer">
-            <h1>View Details</h1>
+           
+          <Link to={`singlejob/${_id}`}><h1>View Details</h1></Link>
             <MdKeyboardDoubleArrowRight className="text-xl" />
+           
           </div>
+         
         </div>
       </div>
     </div>
