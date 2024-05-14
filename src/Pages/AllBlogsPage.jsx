@@ -1,7 +1,8 @@
+
 import { useQuery } from "@tanstack/react-query";
 import { Link } from "react-router-dom";
 
-const BlogsPage = () => {
+const AllBlogsPage = () => {
     const {data,isPending} = useQuery({
         queryKey: ['blogs'],
         queryFn: async () => {
@@ -13,12 +14,12 @@ const BlogsPage = () => {
         return <progress className="progress w-56"></progress>
     }
     return (
-        <div className="lg:p-8">
-          <h1 className="text-center text-3xl font-bold">Read Tech Blogs Here</h1> 
+        <div className="lg:p-8 lg:mx-28">
+          <h1 className="text-center text-3xl font-bold">See all Blogs Here</h1> 
           <p className="text-center mt-2 text-sm">Get your daily quota of tech knowledge from our site. <br /> Read all the relevant tech blogs. Write if you like as well. Get in touch with the hiring managers and make a value for yourself.</p> 
         
           <div className="grid lg:grid-cols-3 gap-4 grid-cols-1 p-4 mt-4 text-black mx-auto" id="blogs">
-  {data?.slice(0,3).map(singleData => (
+  {data?.map(singleData => (
     <div className="bg-white shadow-lg rounded-lg p-4" key={singleData._id}>
       <img src={singleData.image} className="h-60 w-full object-cover rounded-t-lg" alt={singleData.title} />
       <div className="p-4">
@@ -39,4 +40,4 @@ const BlogsPage = () => {
     );
 };
 
-export default BlogsPage;
+export default AllBlogsPage;

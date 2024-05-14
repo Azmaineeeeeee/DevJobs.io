@@ -21,8 +21,7 @@ const Navbar = () => {
     document.querySelector("html").setAttribute("data-theme", localTheme);
   }, [theme]);
 
-  
-
+ 
   const themeChange = (e) => {
     const newTheme = e.target.checked ? "business" : "light";
     setTheme(newTheme);
@@ -44,7 +43,7 @@ const Navbar = () => {
           <NavLink to="/alljobs">All Jobs</NavLink>
         </li>
         <li className="font-medium text-purple-500">
-          <NavLink to="/blogs">Blogs</NavLink>
+          <NavLink to = '/allblogs'>Blogs</NavLink>
         </li>
      {
       user &&    <li className="font-medium text-purple-500">

@@ -1,6 +1,7 @@
 import BannerHome from "../../Components/BannerHome";
 import JobTabs from "../../Components/JobTabs/JobTabs";
 import CountUpCards from "../../Components/CountUpCard"
+import BlogsPage from "../BlogsPage";
 
 
 const Home = () => {
@@ -15,6 +16,11 @@ const Home = () => {
             <div className="text-center p-4 mt-2">
             <JobTabs></JobTabs>
             </div>
+
+            <div className="text-center p-4 mt-2">
+            <BlogsPage></BlogsPage>
+            </div>
+           
         </div>
     );
 };

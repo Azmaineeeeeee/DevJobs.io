@@ -15,7 +15,7 @@ const CountUpCard = ({ title, count, icon }) => {
 
 const CountUpCards = () => {
   return (
-    <div className="grid grid-cols-1 gap-6 md:grid-cols-3">
+    <div className="grid grid-cols-1 gap-6 md:grid-cols-3 lg:mx-36">
       <CountUpCard title="Total Jobs" count={1000} icon={<FaBriefcase className="text-5xl" />} />
       <CountUpCard title="Total Hiring Managers" count={50} icon={<FaUserTie className="text-5xl" />} />
       <CountUpCard title="Found Jobs" count={500} icon={<FaSearch className="text-5xl" />} />
