@@ -20,12 +20,12 @@ const BlogsPage = () => {
           <div className="grid lg:grid-cols-3 gap-4 grid-cols-1 p-4 mt-4 text-black mx-auto" id="blogs">
   {data?.slice(0,3).map(singleData => (
     <div className="bg-white shadow-lg rounded-lg p-4" key={singleData._id}>
-      <img src={singleData.image} className="h-60 w-full object-cover rounded-t-lg" alt={singleData.title} />
+      <img src={singleData.image} className="h-60 w-full object-cover rounded-t-lg border-2 p-2 border-purple-200" alt={singleData.title} />
       <div className="p-4">
         <h1 className="text-lg text-left font-bold mb-2">{singleData.title}</h1>
         <p className="text-left mb-4">{singleData.blog_description.slice(0, 200)}</p>
         <div className="flex items-center gap-2">
-          <Link to={`/blog/${singleData._id}`} className="text-purple-600 font-semibold hover:underline">
+          <Link to={`/singleblog/${singleData._id}`} className="text-purple-600 font-semibold hover:underline">
             Read More.....
           </Link>
           

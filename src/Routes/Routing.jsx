@@ -14,6 +14,7 @@ import SingleJob from "../Pages/SingleJob";
 import ErrorPage from "../Pages/ErrorPage";
 import AddBlogs from "../Pages/AddBlogs";
 import AllBlogsPage from "../Pages/AllBlogsPage";
+import SingleBlog from "../Pages/SingleBlog";
 
 
   const router = createBrowserRouter([
@@ -63,6 +64,13 @@ import AllBlogsPage from "../Pages/AllBlogsPage";
           <SingleJob></SingleJob>
         </PrivateRoute>,
         loader: ({params}) => fetch(`http://localhost:5001/allJobs/${params.id}`)
+      },
+      {
+        path: "singleblog/:id",
+        element: <PrivateRoute>
+          <SingleBlog></SingleBlog>
+        </PrivateRoute>,
+        loader: ({params}) => fetch(`http://localhost:5001/allblogs/${params.id}`)
       },
       {
         path: "/addblogs",
