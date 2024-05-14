@@ -1,46 +1,4 @@
-// import { useLoaderData } from "react-router-dom";
-// import PropTypes from "prop-types";
-// import { IoLocationOutline } from "react-icons/io5";
-// import { GiTakeMyMoney } from "react-icons/gi";
-// import { GiAirplaneArrival } from "react-icons/gi";
-// import { MdSensalary_rangentVerySatisfied } from "react-icons/md";
-// import { FaPeopleGroup } from "react-icons/fa6";
-// import { Link } from "react-router-dom";
 
-// const SingleJob = () => {
-//   const SingleJob = useLoaderData();
-//   const {
-//     image,
-//     job_title,
-//     posted_by,
-//     job_type,
-//     salary_range,
-//     posting_date,
-//     description,
-//     name,
-//     email,
-//     deadline,
-//     detailed_description
-//   } = SingleJob;
-//   return (
-    
-//   );
-// };
-// SingleJob.propTypes = {
-//   spot: PropTypes.shape({
-//     image: PropTypes.string.isRequired,
-//     _id: PropTypes.number.isRequired,
-//     job_title: PropTypes.string.isRequired,
-//     deadline: PropTypes.string.isRequired,
-//     location: PropTypes.string.isRequired,
-//     description: PropTypes.string.isRequired,
-//     posted_by: PropTypes.string.isRequired,
-//     job_type: PropTypes.string.isRequired,
-//     salary_range: PropTypes.number.isRequired,
-//     posting_date: PropTypes.number.isRequired,
-//   }),
-// };
-// export default SingleJob;
 
 
 import PropTypes from 'prop-types';
@@ -67,13 +25,10 @@ const SingleJob = () => {
     <section className="py-6">
     <div className="container mx-auto">
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className=" rounded-md -gray-100 dark:-neutral-600">
+        <div className="rounded-md">
           <div className="relative">
-            <img src={image} alt={job_title} className="w-full rounded-t-md img-fluid mb-7" style={{ maxHeight: '400px' }} />
-            <div className="absolute z-20 -bottom-7 left-7">
-              <img src="assets/images/featured-job/img-10.png" alt="" className="rounded-md img-fluid" />
+            <img src={image} alt={job_title} className="w-full rounded-t-md img-fluid mb-7" style={{ maxHeight: '350px' }} />
             </div>
-          </div>
           <div className="p-6">
             <h5 className="mb-1 font-bold text-lg">{job_title}</h5>
             <ul className="flex gap-4">
@@ -91,7 +46,9 @@ const SingleJob = () => {
           </div>
         </div>
         <div className=" rounded-md  p-6 flex flex-col gap-4 lg:w-1/2">
-          <div className="flex items-center">
+         <div className='space-y-4 border-purple-200 border lg:p-10'>
+          <h1 className='text-lg font-bold'>Job Overview</h1>
+         <div className="flex items-center">
             <FaDollarSign className="text-2xl text-purple-500   gap-4    rounded-full mr-2 " />
             <div className="flex flex-col">
               <span className="font-bold">Salary Range</span>
@@ -123,6 +80,7 @@ const SingleJob = () => {
             <FaRegPaperPlane className="text-lg" />
             Apply Now
           </button>
+         </div>
           <div className="mt-8">
             <h1 className='text-center font-bold text-xl mb-4 text-purple-600'>Meet Your Hiring Manager</h1>
           <div className="border rounded-md border-gray-100 dark:border-neutral-600 flex p-6">
@@ -132,6 +90,9 @@ const SingleJob = () => {
               <p className="">{user.email}</p>
             </div>
           </div>
+        </div>
+        <div>
+
         </div>
         </div>
         

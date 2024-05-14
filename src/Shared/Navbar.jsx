@@ -6,16 +6,13 @@ import { Context } from "../Providers/AuthProviders";
 
 
 
+
 const Navbar = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const {user,logOut} = useContext(Context)
-  const [isOpen, setIsOpen] = useState(false);
   const [theme, setTheme] =  useState(localStorage.getItem("theme") || "light");
 
-  const toggleNavbar = () => {
-    setIsOpen(!isOpen);
-    
-  };
+
  
 
   useEffect(() => {
@@ -40,18 +37,24 @@ const Navbar = () => {
       
 
       <div className="flex lg:flex-row gap-1 flex-col">
-      <li className="font-medium">
+      <li className="font-medium text-purple-500">
         <NavLink to="/">Home</NavLink>
       </li>
-        <li className="font-medium">
+        <li className="font-medium text-purple-500">
           <NavLink to="/alljobs">All Jobs</NavLink>
         </li>
-        <li className="font-medium">
+        <li className="font-medium text-purple-500">
           <NavLink to="/blogs">Blogs</NavLink>
         </li>
+     {
+      user &&    <li className="font-medium text-purple-500">
+     
+      <NavLink to="/addblogs">Add a Blog</NavLink>
+    </li>
+     }
         <li>
         <div>
-          <h1 className="font-medium">Change Mode</h1>
+          
             <label className="cursor-pointer grid place-items-center">
               <input
                 onChange={themeChange}
