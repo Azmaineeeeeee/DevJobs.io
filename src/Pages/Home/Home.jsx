@@ -4,7 +4,15 @@ import CountUpCards from "../../Components/CountUpCard"
 import BlogsPage from "../BlogsPage";
 import TimeLine from "../../Components/TimeLine";
 import image from "../../../public/b157fb9f9246b335ff09562abd2d478e.png"
+import MotionPage from "../../Components/MotionPage";
 
+// import { motion } from 'framer-motion';
+// import { FaUserCheck, FaStar } from 'react-icons/fa';
+
+// const FeedbackSection = () => {
+    
+//   };
+  
 
 const Home = () => {
     return (
@@ -33,6 +41,11 @@ const Home = () => {
             <div className="text-center p-4 mt-2">
             <BlogsPage></BlogsPage>
             </div>
+           
+            <MotionPage></MotionPage>
+            
+            
+           
             
            
         </div>

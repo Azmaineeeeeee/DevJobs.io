@@ -51,7 +51,7 @@ const SingleJob = () => {
           </div>
         </div>
         <div className=" rounded-md  p-6 flex flex-col gap-4 lg:w-1/2">
-         <div className='space-y-4 border-purple-200 border lg:p-10'>
+         <div className='space-y-4 border-purple-200 border lg:p-10 p-6'>
           <h1 className='text-lg font-bold'>Job Overview</h1>
          <div className="flex items-center">
             <FaDollarSign className="text-2xl text-purple-500   gap-4    rounded-full mr-2 " />

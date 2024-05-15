@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 import toast, { Toaster } from "react-hot-toast";
 import { Context } from "../Providers/AuthProviders";
@@ -7,7 +7,8 @@ import { useQuery } from "@tanstack/react-query";
 
 const ApplyModal = ({ closeModal }) => {
   const { user } = useContext(Context);
-
+  const start = Date.now();
+  const [selectedJob, setSelectedJob] = useState(null);
   const { data, isPending } = useQuery({
     queryKey: ["jobs"],
     queryFn: async () => {
@@ -15,20 +16,37 @@ const ApplyModal = ({ closeModal }) => {
       return res.json();
     },
   });
+  const handleJobSelection = (jobId) => {
+    const job = data.find(job => job.id === jobId);
+    setSelectedJob(job);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const form = new FormData(e.currentTarget);
+    if (!selectedJob) {
+      toast.error("Please select a job before applying");
+      return;
+    }
+    const form = e.currentTarget; 
+    const formData = new FormData(form);
     const email = user.email;
     const name = user.displayName;
-    const resume = form.get("resume");
-    const appliedInfo = { email, name, resume };
+    const resume = formData.get("resume");
+    const job_title = selectedJob.job_title;
+    const posted_by = selectedJob.posted_by;
+    const job_type = selectedJob.job_type;
+    const appliedInfo = { email, name, resume,job_title,posted_by,job_type };
+    console.log(appliedInfo);
 
     if (isPending) return <progress className="progress w-56"></progress>;
     if (data.some((job) => job.email === email)) {
       toast.error("Hiring Managers Cannot Apply");
       return;
     }
+ if(start > data.deadline){
+  toast.error("Not taking applications anymore");
+      return;
+ }
 
 
     fetch("http://localhost:5001/allapplicants", {
@@ -103,7 +121,7 @@ const ApplyModal = ({ closeModal }) => {
             />
           </div>
 
-          <button
+          <button onClick={() => handleJobSelection(data.id)}
             type="submit"
             className="w-full py-2 px-4 bg-purple-600 text-white font-semibold rounded-md hover:bg-purple-700 transition duration-300"
           >
