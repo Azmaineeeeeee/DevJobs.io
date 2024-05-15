@@ -14,7 +14,7 @@ const PrivateNavbar = () => {
       </ul>
 
       <ul className="font-medium">
-        <NavLink to="/myjobs">Job Listing</NavLink>
+        <NavLink to="/myjobs">My Jobs</NavLink>
       </ul>
       <ul className="font-medium">
         <NavLink to="/addjobs">Add Jobs</NavLink>
