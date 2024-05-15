@@ -1,15 +1,16 @@
 
 
-
+import ApplyModal from "../Components/ApplyModal"
 import PropTypes from 'prop-types';
 import {  useLoaderData } from 'react-router-dom'; 
 import { FaCalendarAlt, FaDollarSign, FaRegPaperPlane } from 'react-icons/fa'; 
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { Context } from '../Providers/AuthProviders';
 
 const SingleJob = () => {
     const {user} = useContext(Context)
   const singleJob = useLoaderData(); 
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const {
     image,
     job_title,
@@ -20,6 +21,10 @@ const SingleJob = () => {
     deadline,
     detailed_description
   } = singleJob; 
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
 
   return (
     <section className="py-6">
@@ -76,7 +81,7 @@ const SingleJob = () => {
               <span>{job_type}</span>
             </div>
           </div>
-          <button className="bg-purple-800 text-white px-4 py-2 rounded flex items-center justify-center gap-2">
+          <button onClick={toggleModal} className="bg-purple-800 text-white px-4 py-2 rounded flex items-center justify-center gap-2">
             <FaRegPaperPlane className="text-lg" />
             Apply Now
           </button>
@@ -97,6 +102,7 @@ const SingleJob = () => {
         </div>
         
       </div>
+      {isModalOpen && <ApplyModal closeModal={toggleModal} />}
     </div>
   </section>
   );
