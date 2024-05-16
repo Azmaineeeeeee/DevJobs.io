@@ -1,18 +1,8 @@
 import { useContext, useEffect, useState } from "react";
 import { Context } from "../Providers/AuthProviders";
-import { Document, Page, Text, View, StyleSheet, PDFViewer } from '@react-pdf/renderer';
-const styles = StyleSheet.create({
-  page: {
-    flexDirection: 'column',
-    backgroundColor: '#fff',
-    padding: 20,
-  },
-  section: {
-    margin: 10,
-    padding: 10,
-    flexGrow: 1,
-  },
-});
+
+import { PDFDownloadLink, Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
+
 
 const AppliedJobs = () => {
   const { user } = useContext(Context);
@@ -23,42 +13,114 @@ const AppliedJobs = () => {
       .then((res) => res.json())
       .then((data) => {
         setAppliedJobsData(data);
-        
       });
   }, [user]);
-
-  const downloadPDF = () => {
-    const fileName = 'applied_jobs.pdf';
-    const blob = (
-      <Document>
-        <Page size="A4" style={styles.page}>
-          <View style={styles.section}>
-            <Text>Applied Jobs List</Text>
-            {AppliedJobsData.map((job, index) => (
-              <View key={index}>
-                <Text>{index + 1}. {job.job_title} at {job.posted_by}</Text>
-                <Text>Email: {job.email}</Text>
-                <Text>Name: {job.name}</Text>
-                <Text>Resume: {job.resume}</Text>
-              </View>
-            ))}
-          </View>
-        </Page>
-      </Document>
-    );
-    const pdfBlob = new Blob([blob], { type: 'application/pdf' });
-    const url = window.URL.createObjectURL(pdfBlob);
-    const link = document.createElement('a');
-    link.href = url;
-    link.setAttribute('download', fileName);
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-  };
-
-
-
+  const styles = StyleSheet.create({
+    table: {
+      display: "table",
+      width: "auto",
+      borderStyle: "solid",
+      borderWidth: 1,
+      borderRightWidth: 0,
+      borderBottomWidth: 0,
+    },
+    tableRow: { 
+      flexDirection: "row", 
+      width: "100%", 
+      borderBottomWidth: 1, 
+      borderStyle: "solid", 
+      borderColor: "#000", 
+    },
+    tableHeaderCell: { 
+      margin: "auto", 
+      marginTop: 5, 
+      marginBottom: 5, 
+      marginLeft: 5, 
+      marginRight: 5, 
+      width: "14.285%", 
+      borderStyle: "solid", 
+      borderColor: "#000", 
+      borderTopWidth: 1, 
+      borderLeftWidth: 1, 
+      borderRightWidth: 0, 
+      borderBottomWidth: 0, 
+    },
+    tableHeaderText: { 
+      fontWeight: "bold", 
+    },
+    tableCell: { 
+      margin: "auto", 
+      marginTop: 5, 
+      marginBottom: 5, 
+      marginLeft: 5, 
+      marginRight: 5, 
+      width: "14.285%", 
+      borderStyle: "solid", 
+      borderColor: "#000", 
+      borderTopWidth: 1, 
+      borderLeftWidth: 1, 
+      borderRightWidth: 0, 
+      borderBottomWidth: 0, 
+    },
+  });
+  const MyDocument = () => (
   
+    <Document>
+      <Page size="A4">
+        <View style={styles.table}>
+          <View style={styles.tableRow}>
+            <View style={styles.tableHeaderCell}>
+              <Text style={styles.tableHeaderText}>#</Text>
+            </View>
+            <View style={styles.tableHeaderCell}>
+              <Text style={styles.tableHeaderText}>Job Title</Text>
+            </View>
+            <View style={styles.tableHeaderCell}>
+              <Text style={styles.tableHeaderText}>Company Name</Text>
+            </View>
+            <View style={styles.tableHeaderCell}>
+              <Text style={styles.tableHeaderText}>Job Type</Text>
+            </View>
+            <View style={styles.tableHeaderCell}>
+              <Text style={styles.tableHeaderText}>Email</Text>
+            </View>
+            <View style={styles.tableHeaderCell}>
+              <Text style={styles.tableHeaderText}>Name</Text>
+            </View>
+            <View style={styles.tableHeaderCell}>
+              <Text style={styles.tableHeaderText}>Resume</Text>
+            </View>
+          </View>
+          {AppliedJobsData.map((data, index) => (
+            <View style={styles.tableRow} key={index}>
+              <View style={styles.tableCell}>
+                <Text>{index + 1}</Text>
+              </View>
+              <View style={styles.tableCell}>
+                <Text>{data.job_title}</Text>
+              </View>
+              <View style={styles.tableCell}>
+                <Text>{data.posted_by}</Text>
+              </View>
+              <View style={styles.tableCell}>
+                <Text>{data.job_type}</Text>
+              </View>
+              <View style={styles.tableCell}>
+                <Text>{data.email}</Text>
+              </View>
+              <View style={styles.tableCell}>
+                <Text>{data.name}</Text>
+              </View>
+              <View style={styles.tableCell}>
+                <Text>{data.resume}</Text>
+              </View>
+            </View>
+          ))}
+        </View>
+      </Page>
+    </Document>
+  );
+
   return (
     <div>
       <div className="flex flex-col gap-6 items-center mt-4">
@@ -97,16 +159,14 @@ const AppliedJobs = () => {
                 </span>
               </div>
             </div>
-            
           </div>
-        
         </div>
-        <button onClick={downloadPDF}
-                    
-                    className="btn btn-outline btn-error py-0"
-                  >
-                    Download Applied Job List
-                  </button>
+       
+          <PDFDownloadLink document={<MyDocument />} fileName="applied_jobs.pdf">
+          {({ loading }) => (loading ? 'Loading PDF...' : <button className="btn btn-outline btn-error py-0">
+          Download Applied Job List
+        </button>)}
+        </PDFDownloadLink>
       </div>
       <div className="overflow-x-auto mt-4 p-6">
         <table className="table table-xl border-b-2 border-t-2 border-cyan-800 ">
@@ -119,24 +179,19 @@ const AppliedJobs = () => {
               <th>Email</th>
               <th>Name</th>
               <th>Resume</th>
-            
             </tr>
           </thead>
           <tbody>
             {AppliedJobsData.map((data, index) => (
               <tr key={index}>
                 <td>{index + 1}</td>
-                
+
                 <td>{data.job_title}</td>
                 <td>{data.posted_by}</td>
                 <td>{data.job_type}</td>
                 <td>{data.email}</td>
                 <td>{data.name}</td>
                 <td>{data.resume}</td>
-               
-                
-                
-                
               </tr>
             ))}
           </tbody>
