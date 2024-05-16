@@ -11,6 +11,7 @@ import PropTypes from "prop-types";
 import { Toaster, toast } from "react-hot-toast";
 
 import auth from "../FireBase/FireBase.config"
+import axios from "axios";
 
 export const Context = createContext(null);
 
@@ -66,17 +67,43 @@ const updateUser = async (name, photo) => {
   };
 
   // Keeping track of the users
-  useEffect(() => {
-    const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-      console.log("User Changed", currentUser);
-      setUser(currentUser);
-      setLoading(false);
+  // useEffect(() => {
+  //   const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
+  //     console.log("User Changed", currentUser);
+  //     setUser(currentUser);
+  //     setLoading(false);
       
-    });
-    return () => {
-      unSubscribe();
-    };
-  }, [updateLoading]);
+  //   });
+  //   return () => {
+  //     unSubscribe();
+  //   };
+  // }, [updateLoading]);
+  useEffect(()=> {
+    const unSubscribe =  onAuthStateChanged(auth,currentUser => {
+      const userEmail = currentUser?.email || user?.email;
+      const loggedUser = {email: userEmail}
+        setUser(currentUser)
+        console.log(currentUser);
+        setLoading(false)
+        if(currentUser){
+          
+         axios.post('http://localhost:5001/jwt',loggedUser,{withCredentials: true})
+         .then(res => {
+          console.log(res.data);
+         })
+        }
+        else{
+          axios.post('http://localhost:5001/logout',loggedUser,{withCredentials: true})
+          .then(res => {
+            console.log(res.data);
+          })
+        }
+
+      })
+      return () => {
+        unSubscribe();
+      }
+    })
   const authInfo = {
     createUser,
     user,

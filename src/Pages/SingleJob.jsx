@@ -71,7 +71,7 @@ const SingleJob = () => {
             <FaCalendarAlt className="text-2xl text-purple-500   gap-4   rounded-full mr-2" />
             <div className="flex flex-col">
               <span className="font-bold ">Deadline</span>
-              <span>{deadline}</span>
+              <span>{deadline.split('T')[0]}</span>
             </div>
           </div>
           <div className="flex items-center">
@@ -87,7 +87,7 @@ const SingleJob = () => {
           </button>
          </div>
           <div className="mt-8">
-            <h1 className='text-center font-bold text-xl mb-4 text-purple-600'>Meet Your Hiring Manager</h1>
+            <h1 className='text-center font-bold text-xl mb-4 text-purple-600'>Potential Candidate</h1>
           <div className="border rounded-md border-gray-100 dark:border-neutral-600 flex p-6">
             <img src={user.photoURL}  className="w-16 h-16 rounded-full" />
             <div className="ml-4 flex flex-col justify-center">

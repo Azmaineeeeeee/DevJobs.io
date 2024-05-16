@@ -9,6 +9,7 @@ import { SiGoogle } from "react-icons/si";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import toast, { Toaster } from "react-hot-toast";
 import auth from "../FireBase/FireBase.config";
+import axios from "axios";
 
 const LoginModal = ({ closeModal }) => {
   const navigate = useNavigate();
@@ -23,14 +24,24 @@ const LoginModal = ({ closeModal }) => {
     const password = form.get("password");
 
     signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        setSuccessfulLogin(true);
-        toast.success("Successfully Logged In");
-        closeModal();
-        setTimeout(() => {
-          navigate(location?.state ? location.state : "/");
-        }, 1000);
+      .then((result) => {
+        const loggedInUser = result.user;
+        console.log(loggedInUser);
+        const user = {email};
+        axios.post('http://localhost:5001/jwt',user,{withCredentials:true})
+        .then(res => {
+          console.log(res.data);
+          setSuccessfulLogin(true);
+          toast.success("Successfully Logged In");
+          closeModal();
+          if(res.data){
+            setTimeout(() => {
+              navigate(location?.state ? location.state : "/");
+            }, 1000);
+          }
+        })
+       
+        
       })
       .catch((error) => {
         setSuccessfulLogin(false);

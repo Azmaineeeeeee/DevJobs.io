@@ -44,6 +44,7 @@ const AddJobs = () => {
                 icon: 'success',
                 confirmButtonText: 'Confirm'
               })
+             
         }
      })
 

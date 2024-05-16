@@ -3,17 +3,30 @@
 import  { useEffect, useState } from "react";
 import banner from "../../../public/pexels-alscre-2847648.jpg";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 const AllJobCard = () => {
   const [data, setData] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
 
+  // useEffect(() => {
+  //   fetch("http://localhost:5001/allJobs",{withCredentials: 'include'})
+  //     .then((res) => res.json())
+  //     .then((result) => {
+  //       setData(result);
+  //     // axios.get("http://localhost:5001/allJobs")
+  //     // .then(res => {
+  //     //   setData(res)
+  //     // })
+  //     });
+  // }, []);
   useEffect(() => {
-    fetch("http://localhost:5001/allJobs")
-      .then((res) => res.json())
-      .then((result) => {
-        setData(result);
-      });
+    axios.get("http://localhost:5001/allJobs", {
+      withCredentials: true 
+    })
+    .then((res) => {
+      setData(res.data);
+    });
   }, []);
 
   const getColorForJobType = (jobType) => {

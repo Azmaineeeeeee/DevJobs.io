@@ -12,6 +12,7 @@
   "dependencies": {
     "@react-pdf/renderer": "^3.4.4",
     "@tanstack/react-query": "^5.35.5",
+    "axios": "^1.6.8",
     "downloadjs": "^1.4.7",
     "file-saver": "^2.0.5",
     "firebase": "^10.11.1",
