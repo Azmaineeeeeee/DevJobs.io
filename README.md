@@ -8,7 +8,7 @@ The primary goal of this web application is to showcase job opportunities from v
 
 ## Live Site
 
-- [ExploreQuest Live Preview](https://explorequest-tourism-app.web.app/)
+- [DevJobs Live Preview](https://devjobs-57a9a.web.app/)
 
 
 ## Welcome to DevJobs.io!
